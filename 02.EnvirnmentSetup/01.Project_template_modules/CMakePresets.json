@@ -156,8 +156,7 @@
       "inherits": "base",
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++",
-        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
-        "CMAKE_BUILD_TYPE": "Debug"
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic"
       },
       "condition": {
         "type": "equals",
