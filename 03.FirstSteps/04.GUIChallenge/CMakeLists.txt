@@ -17,6 +17,7 @@ find_package(SFML 3 CONFIG REQUIRED COMPONENTS
     Graphics
     Window
     System
+    Audio
 )
 
 message(STATUS "SFML version: ${SFML_VERSION}")
@@ -41,4 +42,5 @@ target_link_libraries(${PROJECT_NAME}
         SFML::Graphics
         SFML::Window
         SFML::System
+        SFML::Audio
 )

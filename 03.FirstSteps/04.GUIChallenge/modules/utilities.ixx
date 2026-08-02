@@ -1,6 +1,7 @@
 module;
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <fmt/format.h>
 
 export module utilities; // Name doesn't have to match the .ixx file
