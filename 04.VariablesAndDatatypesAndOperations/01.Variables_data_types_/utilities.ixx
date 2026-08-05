@@ -1,9 +1,32 @@
 module;
 
+#include<SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include<fmt/format.h>
 #include<limits>
 
 export module utilities;
+
+export void explicit_window(){
+    //Creating A Window
+    sf::VideoMode* p_video = new sf::VideoMode{{800,600}};
+    sf::RenderWindow* p_window = new sf::RenderWindow{
+                                *p_video,
+                                "My Window",
+                                1 << 2};
+    while(p_window->isOpen()){
+        while(const std::optional<sf::Event> event = p_window->pollEvent()){
+            if((*event).is<sf::Event::Closed>()){
+                p_window->close();
+            }
+        }
+        p_window->clear();
+
+        p_window->display();
+    }
+    delete p_window;
+    delete p_video;
+}
 
 export void number_systems(){
     //Integers and number system

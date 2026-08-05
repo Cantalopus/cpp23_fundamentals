@@ -3,11 +3,16 @@
 */
 
 #include <fmt/format.h>
+#include <SFML/Graphics.hpp>
 
 // One line comment
 import utilities;
 
 int main(){
+
+    explicit_window();
+
+/*
 
     number_systems();
 
@@ -16,5 +21,6 @@ int main(){
     numeric_limits();
 
     print_type_ranges();
+*/    
 }
 

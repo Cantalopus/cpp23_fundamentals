@@ -6,6 +6,7 @@ set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_SCAN_FOR_MODULES ON)
 find_package(fmt CONFIG REQUIRED)
+find_package(SFML 3 COMPONENTS System Window Graphics CONFIG REQUIRED)
 add_executable(${PROJECT_NAME} main.cpp)
 target_compile_features(
     ${PROJECT_NAME}
@@ -25,4 +26,7 @@ target_sources(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
         fmt::fmt
+        SFML::Graphics
+        SFML::Window
+        SFML::System
 )
