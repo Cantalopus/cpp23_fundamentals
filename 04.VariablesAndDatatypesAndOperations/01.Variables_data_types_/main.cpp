@@ -9,9 +9,12 @@ import utilities;
 
 int main(){
 
-    //number_systems();
+    number_systems();
 
-    //floating_point_types();
+    floating_point_types();
 
     numeric_limits();
+
+    print_type_ranges();
 }
+

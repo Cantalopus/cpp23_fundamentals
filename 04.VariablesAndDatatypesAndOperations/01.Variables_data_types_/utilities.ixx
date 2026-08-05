@@ -1,10 +1,11 @@
 module;
 
 #include<fmt/format.h>
+#include<limits>
 
-export module utilities:
+export module utilities;
 
-export void number_system(){
+export void number_systems(){
     //Integers and number system
     int number1 = 15;         // Decimal
     int number2 = 017;        // Octal
@@ -50,11 +51,26 @@ export void numeric_limits(){
                                     std::numeric_limits<int>::max());
     fmt::println("The range for float is from {} to {}",
                                     std::numeric_limits<float>::min(),
-                                    std::numeric_limits<float>::max())
+                                    std::numeric_limits<float>::max());
     fmt::println("The range for double is from {} to {}",
                                     std::numeric_limits<double>::min(),
                                     std::numeric_limits<double>::max());
-    fmt::printlln("The range for long double is {} to {}"
+    fmt::println("The range for long double is {} to {}",
                                     std::numeric_limits<long double>::min(),
                                     std::numeric_limits<long double>::max());
+}
+
+export void print_type_ranges(){
+    //Ranges
+    fmt::println("The range for short is from {} to {}", std::numeric_limits<short>::min(), std::numeric_limits<short>::max());
+    fmt::println("The range for unsinged short is from {} to {}", std::numeric_limits<unsigned short>::min(), std::numeric_limits<unsigned short>::max());
+    fmt::println("The range for int is from {} to {}", std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+    fmt::println("The range for unsigned int is from {} to {}", std::numeric_limits<unsigned int>::min(), std::numeric_limits<unsigned int>::max());
+    fmt::println("The range for long is from {} to {}", std::numeric_limits<long>::min(), std::numeric_limits<long>::max());
+    fmt::println("The range for float is from {} to {}", std::numeric_limits<float>::min(), std::numeric_limits<float>::max());
+    fmt::println("The range(with lowest) for float is from {} to {}", std::numeric_limits<float>::lowest(), std::numeric_limits<float>::max());
+    fmt::println("The range(with lowest) for double is from {} to {}", std::numeric_limits<double>::lowest(), std::numeric_limits<double>::max());
+    fmt::println("The range(with lowest) for long double is from {} to {}", std::numeric_limits<long double>::lowest(), std::numeric_limits<long double>::max());
+    fmt::println("int is signed: {}", std::numeric_limits<int>::is_signed);
+    fmt::println("int digits: {}", std::numeric_limits<int>::digits);
 }
