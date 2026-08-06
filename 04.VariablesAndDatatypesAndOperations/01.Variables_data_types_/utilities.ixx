@@ -7,6 +7,62 @@ module;
 
 export module utilities;
 
+export void moving_rectangle() {
+
+    sf::RenderWindow* p_window = new sf::RenderWindow(sf::VideoMode{{800, 600}}, "Moving Rectangle");
+    sf::RectangleShape* rectangle = new sf::RectangleShape{{100.f, 50.f}};
+
+    rectangle->setPosition({350.f, 275.f});
+    rectangle->setFillColor(sf::Color::Red);
+
+    while(p_window->isOpen())
+    {
+        while(const std::optional<sf::Event> event = p_window->pollEvent())
+        {
+            if(((*event).is<sf::Event::Closed>()))
+                p_window->close();
+        }
+    
+
+    /////////Keyboard Input///////////////////////////
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        rectangle->move({-2.f, 0.f});
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        rectangle->move({2.f, 0.f});
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+        rectangle->move({0.f, -2.f});
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        rectangle->move({0.f, 2.f});
+
+    /////////Update Window///////////////////////////
+    p_window->clear();
+    p_window->draw(*rectangle);
+    p_window->display();
+    }
+    delete p_window;
+    delete rectangle;
+}
+
+export void draw_rectangle(){
+    //Draw Rectangle
+    sf::RenderWindow window(sf::VideoMode{{800,600}},"Draw Rectangle");
+    sf::RectangleShape rectangle({200.f, 100.f});
+    rectangle.setPosition({300.f,250.f});
+    rectangle.setFillColor(sf::Color::Green);
+
+    while(window.isOpen()){
+        while(const std::optional<sf::Event>event = window.pollEvent()){
+            if(event->is<sf::Event::Closed>())
+                window.close();
+        }
+    window.clear();
+
+    window.draw(rectangle);
+
+    window.display();
+    }
+}
+
 export void explicit_window(){
     //Creating A Window
     sf::VideoMode* p_video = new sf::VideoMode{{800,600}};

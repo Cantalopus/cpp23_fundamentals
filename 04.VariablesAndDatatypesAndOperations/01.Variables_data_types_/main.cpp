@@ -10,9 +10,12 @@ import utilities;
 
 int main(){
 
-    explicit_window();
+    moving_rectangle();
 
 /*
+    draw_rectangle();
+
+    explicit_window();
 
     number_systems();
 
