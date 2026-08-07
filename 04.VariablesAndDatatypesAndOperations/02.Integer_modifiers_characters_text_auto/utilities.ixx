@@ -1,7 +1,10 @@
 module;
 
 #include<SFML/Graphics.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include<SFML/Graphics/RenderWindow.hpp>
 #include<fmt/format.h>
 #include<iostream>
 #include<cmath>
@@ -10,7 +13,50 @@ module;
 
 export module utilities;
 
-export void compute_distance(double x1, double y1, double x2, double y2) {
+export void create_window()
+{
+    sf::RenderWindow window(
+        sf::VideoMode{
+            {800, 600}
+        },
+        "WINDOW!!!!", 
+        sf::Style::Close);
+
+    sf::RectangleShape rectangle_1;
+        rectangle_1.setSize({100.l, 100.l});
+        rectangle_1.setFillColor(sf::Color::Blue);
+        rectangle_1.setPosition({200.l,200.l});
+        rectangle_1.setOutlineColor(sf::Color::Red);
+        rectangle_1.setOutlineThickness(1.3f);
+
+    sf::CircleShape circle_1;
+        circle_1.setRadius(100.f);
+        circle_1.setFillColor(sf::Color::Blue);
+        circle_1.setPosition({400.l,350.l});
+        circle_1.setOutlineColor(sf::Color::Red);
+        circle_1.setOutlineThickness(1.3f);
+    
+    while(window.isOpen()){
+        while(const std::optional<sf::Event>event = window.pollEvent()){
+            if(event->is<sf::Event::Closed>()){
+                window.close();
+            }
+        }
+        
+        window.clear();
+
+        
+        window.draw(rectangle_1);
+        window.draw(circle_1);
+
+
+
+        window.display();
+    }
+}
+
+export void compute_distance(double x1, double y1, double x2, double y2) 
+{
     
     //Don't change anything above this line
     //Your code will go below this line.
@@ -24,7 +70,8 @@ export void compute_distance(double x1, double y1, double x2, double y2) {
     //Don't change anything below this line
 }
 
-export void check_even_odd(int number) {
+export void check_even_odd(int number) 
+{
     
     //Don't change anything above this line
     //Your code will go below this line
@@ -39,7 +86,8 @@ export void check_even_odd(int number) {
     //Don't change anything below this line 
 }
 
-export int digit_sum(int number) {
+export int digit_sum(int number) 
+{
     if (number < 10 || number > 99) {
         std::cout << "Error: Please enter a two-digit number.\n";
         return -1;
@@ -60,7 +108,8 @@ export int digit_sum(int number) {
     return tens + ones;
 }
 
-export void traffic_light(bool green_light) {
+export void traffic_light(bool green_light) 
+{
     std::cout << "Green light: " << green_light << "\n";
     
     //Don't change anything above this line
@@ -130,7 +179,7 @@ export void testing_unsigned_int()
 
       unsigned int foo_1=-3;
     //unsigned int foo_2{-3}; //Compiler error: Narrowing conversion
-      unsigned int foo_3(-4294967291);
+    //unsigned int foo_3(-4294967291); // Throws WARNING!!!, compiles
 
       fmt::println("foo_1 : {}", foo_1);
       fmt::println("foo_2 : throws compiler error");
@@ -146,14 +195,14 @@ export void assignment_initialization()
     int bike_count = 2;
     int truck_count = 7;
     int vehicle_count = bike_count + truck_count;
-    int narrowing_conversions_assignment = 2.9; // Using int to store float
+    //int narrowing_conversions_assignment = 2.9; // Using int to store float
                                     // truncates the value after
                                     // the decimal
-
+                                    // Throws WARNING!!!, compiles
     fmt::println("Bike count: {}", bike_count);
     fmt::println("Truck count: {}", truck_count);
     fmt::println("Vehicle count: {}", vehicle_count);
-    fmt::println("Narrowing conversions: {}", narrowing_conversions_assignment);
+    //fmt::println("Narrowing conversions: {}", narrowing_conversions_assignment);
     fmt::println("sizeof int: {}", sizeof(int));
     fmt::println("sizeof truck_count: {}", sizeof(truck_count));
 
@@ -192,14 +241,15 @@ export void functional_initialization()
     int apple_count(5);
     int orange_count(10);
     int fruit_count(apple_count + orange_count);
-    int narrowing_conversions_functional(2.9); // Using int to store float
+    //int narrowing_conversions_functional(2.9); // Using int to store float
                                               // truncates the value after
                                               // the decimal
+                                              // Throws WARNING!!!, compiles
 
     fmt::println("Apple count: {}", apple_count);
     fmt::println("Orange count: {}", orange_count);
     fmt::println("fruit count: {}", fruit_count);
-    fmt::println("Narrowing conversions: {}", narrowing_conversions_functional);
+    //fmt::println("Narrowing conversions: {}", narrowing_conversions_functional);
     fmt::println("sizeof int: {}", sizeof(int));
     fmt::println("sizeof apple_count: {}", sizeof(apple_count));
 
