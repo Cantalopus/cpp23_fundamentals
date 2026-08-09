@@ -1,17 +1,107 @@
 module;
 
 #include<SFML/Graphics.hpp>
+#include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include<SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include<fmt/format.h>
 #include<iostream>
+#include<array>
 #include<cmath>
 #include<string>
 
 
 export module utilities;
+
+export void movable_object(){
+    
+    sf::RenderWindow window(
+        sf::VideoMode{
+            {800, 800}
+        },
+        "Movable Object", 
+        sf::Style::Close
+    );
+    sf::CircleShape circle(50.f, 100);
+    circle.setFillColor(sf::Color::Cyan);
+    circle.setOutlineColor(sf::Color::Red);
+    circle.setOutlineThickness(2.f);
+
+    sf::CircleShape circle_1 = circle;
+    circle_1.setPosition({400.f, 400.f});
+    circle_1.setFillColor(sf::Color::Blue);
+    circle_1.setOutlineColor(sf::Color::Red);
+    circle_1.setOutlineThickness(3.f);
+
+    std::array line{
+        sf::Vertex{{100.f, 100.f}},
+        sf::Vertex{{500.f, 300.f}}
+    };
+
+    while(window.isOpen())
+    {
+        while(const std::optional<sf::Event>event = window.pollEvent())
+        {
+            if(event->is<sf::Event::Closed>())
+                window.close();
+
+        }
+        {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+                circle.move({0.f, 1.f});
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+                circle.move({0.f, -1.f});
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+                circle.move({-1.f, 0.f});
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+                circle.move({1.f, 0.f});
+        }
+        {
+            sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+
+            sf::Vector2f world_position =
+                window.mapPixelToCoords(mouse_position);
+
+            circle_1.setPosition(world_position);
+        }
+        window.clear();
+        window.draw(circle);
+        window.draw(circle_1);
+        window.draw(line.data(), line.size(), sf::PrimitiveType::Lines);
+        window.display();
+    }
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export void create_window()
 {
@@ -41,6 +131,21 @@ export void create_window()
             if(event->is<sf::Event::Closed>()){
                 window.close();
             }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
+            rectangle_1.move({-2.f, 0.f});
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+            rectangle_1.move({2.f, 0.f});
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+            rectangle_1.move({0.f, -2.f});
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
+            rectangle_1.move({0.f, 2.f});
         }
         
         window.clear();

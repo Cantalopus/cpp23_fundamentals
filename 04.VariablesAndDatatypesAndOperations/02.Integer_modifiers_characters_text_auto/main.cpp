@@ -1,6 +1,5 @@
 #include <fmt/format.h>
 #include <SFML/Graphics.hpp>
-#include <string>
 
 import utilities;
 
@@ -14,6 +13,7 @@ func testing_unsigned_int
 func assignment_initialization
 func braced_initialization
 func functional_initialization
+func create_window
 */
 
 int main(){
@@ -26,7 +26,8 @@ int main(){
     //traffic_light(1);
     //check_even_odd(88);
     //compute_distance(-1, -1, 4, 4);
-    create_window();
+    //create_window();
+    movable_object();
     
     return 0;
 }
